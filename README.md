@@ -13,7 +13,7 @@ I've created tests for every query param at `test/food_trucks/trucks_test.exs` o
 
 `GET "/trucks"`
 
-Now you can query the data using the following possible queries(as query params)
+You can query the data using the following possible queries(as query params)
 
 | param    | description                                                     | type   | example  | column    |
 |----------|-----------------------------------------------------------------|--------|----------|-----------|
@@ -22,7 +22,7 @@ Now you can query the data using the following possible queries(as query params)
 | food     | returns trucks when the string is included in their description | string | taco     | FoodItems |
 | name     | returns trucks when the string is included in the name          | string | Natan's  | name      |
 
-An example query would be `http://localhost:4000/trucks?distance=1&status=APPROVED"
+An example query would be `http://localhost:4000/trucks?distance=1&status=APPROVED`
 
 It returns a list of objects that matches the query. Here is an example of what it returns
 
@@ -43,10 +43,10 @@ It returns a list of objects that matches the query. Here is an example of what 
 ## Concessions
 The following is a list of conecessions I made due to time
 
-* Fixed location: Originally planned on using a variable location to determine distance but thought it would be too extra time to implement asking for valid coordinates as input, as well as a pain for finding useful coords to test.
+* Fixed location: Originally planned on using a variable location to determine distance but thought it would be too much extra time to implement asking for valid coordinates as input, as well as a pain for finding useful coords to test.
 * Distance as the crow flies vs walking distance: Could have used google maps API to determine distance but that would require billing info to use and this is just a test
 * Wanted to include some sorting but needed some time to implement the route/controller
-* Would have loved to do a liveview page that displayed the results, but not enough time so opted for a route.
+* Would have loved to do a liveview page that displayed the results, but not enough time so opted for a route instead.
 
 ## Thoughts
 Originally tried to implement my own ligtweight csv parser but the data had "," in some of the strings so it was corrupting the data. But once implemented NimbleCSV it was really smooth from there.

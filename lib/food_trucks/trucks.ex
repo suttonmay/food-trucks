@@ -15,10 +15,6 @@ defmodule FoodTrucks.Trucks do
     query(results, queries)
   end
 
-  defp query([], _) do
-    []
-  end
-
   defp query(results, queries) when queries == %{} do
     Enum.map(results, fn row -> row end)
   end
