@@ -56,6 +56,18 @@ defmodule FoodTrucks.TrucksTest do
     end
   end
 
+  describe "Filter by truck name" do
+    test "Natan's trucks" do
+      results = Trucks.query(%{"name" => "Natan's"})
+      assert Enum.count(results) == 37
+    end
+
+    test "el alambre trucks using wrong case" do
+      results = Trucks.query(%{"name" => "el alambre"})
+      assert Enum.count(results) == 4
+    end
+  end
+
   describe "multiple queries" do
     test "APPROVED status and taco truck" do
       results = Trucks.query(%{"food" => "taco", "status" => "APPROVED"})

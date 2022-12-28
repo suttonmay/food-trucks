@@ -30,16 +30,26 @@ defmodule FoodTrucks.Trucks do
     query(results, queries)
   end
 
-  defp query(results, %{"distance" => distance} = queries) do
-    results = Stream.filter(results, fn row -> determine_distance(row.lat, row.long) < distance end)
-    queries = Map.delete(queries, "distance")
+  defp query(results, %{"food" => food} = queries) do
+    results = Stream.filter(results, fn row -> String.contains?(String.downcase(row.food), String.downcase(food)) end)
+    queries = Map.delete(queries, "food")
 
     query(results, queries)
   end
 
-  defp query(results, %{"food" => food} = queries) do
-    results = Stream.filter(results, fn row -> String.contains?(String.downcase(row.food), String.downcase(food)) end)
-    queries = Map.delete(queries, "food")
+  defp query(results, %{"name" => name} = queries) do
+    results = Stream.filter(results, fn row -> String.contains?(String.downcase(row.name), String.downcase(name)) end)
+    queries = Map.delete(queries, "name")
+
+    query(results, queries)
+  end
+
+  defp query(results, %{"distance" => distance} = queries) do
+    results =
+    results
+    |> Stream.map(fn row -> Map.put(row, :distance, determine_distance(row.lat, row.long)) end)
+    |> Stream.filter(fn row ->  row.distance < distance end)
+    queries = Map.delete(queries, "distance")
 
     query(results, queries)
   end
