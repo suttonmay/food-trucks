@@ -11,29 +11,33 @@ To start your Phoenix server:
 ## Usage
 I've created tests for every query param at `test/food_trucks/trucks_test.exs` or you can test with your own params using the route
 
-GET "/trucks"
+`GET "/trucks"`
 
 Now you can query the data using the following possible queries(as query params)
 
 | param    | description                                                     | type   | example  | column    |
 |----------|-----------------------------------------------------------------|--------|----------|-----------|
 | status   | status of the food truck's permit                               | string | APPROVED | Status    |
-| distance | returns truck within the distance from city hall in miles       | float  | 0.5      | n/a       |
+| distance | returns truck within the distance from city hall in miles       | number | 0.5      | n/a       |
 | food     | returns trucks when the string is included in their description | string | taco     | FoodItems |
 | name     | returns trucks when the string is included in the name          | string | Natan's  | name      |
 
-It returns a list of objects that matches the query. Here is an example of the object it returns
+An example query would be `http://localhost:4000/trucks?distance=1&status=APPROVED"
+
+It returns a list of objects that matches the query. Here is an example of what it returns
 
 ```
- {
-  "name": "Natan's",
-  "status": "APPROVED",
-  "distance: "1.0421335848651578",
-  "food": "Everything but hot dogs",
-  "lat": "37.12121",
-  "long": "-122.323838"
-  "schedule": "http://schedule.etc"
- }
+ [
+    {
+      "name": "Natan's",
+      "status": "APPROVED",
+      "distance: "1.0421335848651578",
+      "food": "Everything but hot dogs",
+      "lat": "37.12121",
+      "long": "-122.323838"
+      "schedule": "http://schedule.etc"
+  }
+ ]
 ```
 
 ## Concessions
